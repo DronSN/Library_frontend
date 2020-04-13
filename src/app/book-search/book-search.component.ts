@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-book-search',
@@ -10,7 +13,5 @@ export class BookSearchComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.value);
   }
-
 }

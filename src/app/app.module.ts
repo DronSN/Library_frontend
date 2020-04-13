@@ -17,7 +17,8 @@ import {MatTableModule} from '@angular/material/table';
 import { BookSearchComponent } from './book-search/book-search.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatOptionModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -25,23 +26,25 @@ import {FormsModule} from '@angular/forms';
     PopularBookComponent,
     BookSearchComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSidenavModule,
-    HttpClientModule,
-    FlexLayoutModule,
-    MatCardModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        MatSidenavModule,
+        HttpClientModule,
+        FlexLayoutModule,
+        MatCardModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatOptionModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

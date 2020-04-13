@@ -2,14 +2,27 @@
   margin: 5pt auto;
   display: table;
   font-size: 15pt;
-  //width: 100%;
+  width: 100%;
+}
+.empty-block{
+  display: table-cell;
+  width: 30%;
 }
 .search-book-form {
   min-width: 450px;
   max-width: 700px;
-  width: 100%;
+  display: table-cell;
+  width: 40%;
+  text-align: center;
+  //padding-left: 40pt;
 }
 
 .search-book-full-width {
   width: 100%;
+}
+.search-button{
+  display: table-cell;
+  width: 30%;
+  text-align: left;
+  padding-left: 10pt;
 }
