@@ -19,12 +19,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatOptionModule} from '@angular/material/core';
+import { UserMenuComponent } from './core/components/user-menu/user-menu.component';
+import {LOAD_CURRENT_USER_INITIALIZER} from './core/services/current-user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     PopularBookComponent,
-    BookSearchComponent
+    BookSearchComponent,
+    UserMenuComponent
   ],
     imports: [
         BrowserModule,
@@ -45,7 +48,7 @@ import {MatOptionModule} from '@angular/material/core';
         MatOptionModule,
         ReactiveFormsModule
     ],
-  providers: [],
+  providers: [LOAD_CURRENT_USER_INITIALIZER],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
