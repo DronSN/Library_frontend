@@ -28,7 +28,7 @@ export class CurrentUserService {
         if (!user.authenticated) {
           return false;
         }
-        const userRoles = user.info.roles;
+        const userRoles = user.info.role;
         return userRoles.find(role => roles.includes(role)) != undefined;
       })
     );

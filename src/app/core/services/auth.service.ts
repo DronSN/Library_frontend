@@ -35,6 +35,6 @@ export class AuthService {
   }
 
   logout(): Observable<void> {
-    return this.http.post<void>('/api/auth/login', null);
+    return this.http.post<void>('/api/auth/logout', null);
   }
 }

@@ -10,7 +10,7 @@ export interface LoggedUser {
   authenticated: true;
   info: {
     username: string;
-    roles: Role[];
+    role: Role[];
   };
 }
 

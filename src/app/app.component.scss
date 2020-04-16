@@ -1,8 +1,8 @@
 .library-icon {
   color: chartreuse;
-  display: inline-table;
+  display: inline-block;
   font-size: 40pt;
-  margin-left: 20pt;
+  //margin-left: 20pt;
 }
 .my-footer{
   height: 50pt;
@@ -27,4 +27,25 @@
 }
 .my-sidenav{
   background-color: aliceblue;
+}
+.button-table{
+  display: table;
+  width: 100%;
+}
+.logo-cell{
+  display: table-cell;
+  width: 10%;
+  vertical-align: middle;
+  text-align: center;
+}
+.main-button-cell{
+  display: table-cell;
+  width: 40%;
+  vertical-align: middle;
+}
+.right-cell{
+  display: table-cell;
+  width: 50%;
+  vertical-align: middle;
+  text-align: right;
 }

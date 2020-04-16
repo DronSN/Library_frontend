@@ -2,7 +2,7 @@
 <div class="search-block">
   <div class = "empty-block"></div>
   <form class="search-book-form">
-    <mat-form-field class="search-book-full-width">
+    <mat-form-field appearance="legacy">
       <mat-label>Найти издание</mat-label>
       <input matInput  type="text" [(ngModel)]="value" [ngModelOptions]="{standalone: true}">
       <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">

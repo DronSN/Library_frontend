@@ -3,9 +3,17 @@
   <mat-sidenav-content fxLayout="column">
     <div >
       <mat-toolbar color="primary">
-        <button mat-button routerLink="/"><h2>БИБЛИОтека</h2></button>
-        <mat-icon class="library-icon" aria-hidden="false" >local_library</mat-icon>
-        <app-user-menu></app-user-menu>
+        <div class="button-table">
+          <div class = "logo-cell">
+            <mat-icon class="library-icon" aria-hidden="false" >local_library</mat-icon>
+          </div>
+          <div class="main-button-cell">
+            <button mat-button routerLink="/"><h2>БИБЛИОтека</h2></button>
+          </div>
+          <div class = "right-cell">
+            <app-user-menu></app-user-menu>
+          </div>
+        </div>
       </mat-toolbar>
     </div>
     <app-book-search></app-book-search>

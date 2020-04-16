@@ -9,12 +9,13 @@
   width: 30%;
 }
 .search-book-form {
-  min-width: 450px;
-  max-width: 700px;
+  //min-width: 450px;
+  //max-width: 700px;
   display: table-cell;
   width: 40%;
   text-align: center;
-  //padding-left: 40pt;
+  background-color: aliceblue;
+   //padding-left: 40pt;
 }
 
 .search-book-full-width {
@@ -25,4 +26,7 @@
   width: 30%;
   text-align: left;
   padding-left: 10pt;
+}
+.search-book-form .mat-form-field {
+  width: 520px;
 }

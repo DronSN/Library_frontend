@@ -15,40 +15,45 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import { BookSearchComponent } from './book-search/book-search.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatOptionModule} from '@angular/material/core';
-import { UserMenuComponent } from './core/components/user-menu/user-menu.component';
+import {LoginDialogComponent, UserMenuComponent} from './core/components/user-menu/user-menu.component';
 import {LOAD_CURRENT_USER_INITIALIZER} from './core/services/current-user.service';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     PopularBookComponent,
     BookSearchComponent,
-    UserMenuComponent
+    UserMenuComponent,
+    LoginDialogComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatMenuModule,
-        MatButtonModule,
-        MatIconModule,
-        MatSidenavModule,
-        HttpClientModule,
-        FlexLayoutModule,
-        MatCardModule,
-        MatTableModule,
-        MatFormFieldModule,
-        MatInputModule,
-        FormsModule,
-        MatOptionModule,
-        ReactiveFormsModule
-    ],
-  providers: [LOAD_CURRENT_USER_INITIALIZER],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSidenavModule,
+    HttpClientModule,
+    FlexLayoutModule,
+    MatCardModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatOptionModule,
+    ReactiveFormsModule,
+    MatDialogModule
+  ],
+  // entryComponents: [DialogOverviewExample, DialogOverviewExampleDialog],
+  providers: [LOAD_CURRENT_USER_INITIALIZER,
+              { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
