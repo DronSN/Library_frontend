@@ -2,15 +2,19 @@
 <div mat-dialog-content>
   <mat-form-field>
     <mat-label>Логин</mat-label>
-    <input matInput [(ngModel)]="data.username">
+    <input matInput [formControl]="username"  >
+    <mat-error *ngIf="username.invalid">{{getErrorMessage(username)}}</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Пароль</mat-label>
-    <input type="password" matInput [(ngModel)]="data.password">
+    <input type="password" matInput [formControl]="password" >
+    <mat-error *ngIf="password.invalid">{{getErrorMessage(username)}}</mat-error>
   </mat-form-field>
 
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Отмена</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Войти</button>
+  <button mat-button
+          disabled = {{username.invalid||password.invalid}}
+          (click)="onOkClick()" >Войти</button>
 </div>

@@ -22,6 +22,7 @@ import {MatOptionModule} from '@angular/material/core';
 import {LoginDialogComponent, UserMenuComponent} from './core/components/user-menu/user-menu.component';
 import {LOAD_CURRENT_USER_INITIALIZER} from './core/services/current-user.service';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     FormsModule,
     MatOptionModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   // entryComponents: [DialogOverviewExample, DialogOverviewExampleDialog],
   providers: [LOAD_CURRENT_USER_INITIALIZER,
