@@ -1,0 +1,14 @@
+.profile-form{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.profile-form .mat-form-field {
+  align-self: center;
+  width: 400px;
+}
+.profile-form .mat-raised-button {
+  align-self: center;
+  width: 400px;
+}

@@ -1,6 +1,7 @@
 <div class = "login-button" *ngIf="user$ | async as user">
   <ng-container *ngIf="user.authenticated; else logInButton">
-    <span class="username">{{user.info.username}}  </span>
+    <span class="username">Пользователь: {{user.info.username}}  </span>
+    <a routerLink="profile" mat-button >Профиль пользователя</a>
     <button mat-stroked-button
             (click)="handleLogoutClick()">
       Выйти

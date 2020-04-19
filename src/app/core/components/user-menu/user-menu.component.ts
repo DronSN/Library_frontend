@@ -47,9 +47,9 @@ export class UserMenuComponent {
       width: '255px',
       height: '380px'
     });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   this.handleLoginSubmit(result);
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      this.handleLoginSubmit(result);
+    });
   }
 
 
