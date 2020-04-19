@@ -14,7 +14,10 @@ export class AuthService {
   }
 
   loadProfile(): Observable<CurrentUser> {
-    return this.http.get<CurrentUser>(`/api/currentuser`);
+    return this.http.get<CurrentUser>(`/api/currentuser`)
+      .pipe(
+        catchError(() => of({authenticated: false, info: {username: null, role: null}}) )
+      );
   }
 
   login(data: LoginData): Observable<void> {

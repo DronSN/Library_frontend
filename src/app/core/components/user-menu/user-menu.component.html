@@ -1,7 +1,6 @@
 <div class = "login-button" *ngIf="user$ | async as user">
   <ng-container *ngIf="user.authenticated; else logInButton">
     <span class="username">{{user.info.username}}  </span>
-
     <button mat-stroked-button
             (click)="handleLogoutClick()">
       Выйти
@@ -9,6 +8,7 @@
   </ng-container>
 
   <ng-template #logInButton>
+    <button mat-button (click)="signupClick()">Регистрация</button>
     <a *ngIf="!user.authenticated"
        mat-flat-button
        color="accent"

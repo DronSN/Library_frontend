@@ -2,13 +2,13 @@
 <div mat-dialog-content>
   <mat-form-field>
     <mat-label>Логин</mat-label>
-    <input matInput [formControl]="username"  >
+    <input matInput [formControl]="username"  required>
     <mat-error *ngIf="username.invalid">{{getErrorMessage(username)}}</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Пароль</mat-label>
-    <input type="password" matInput [formControl]="password" >
-    <mat-error *ngIf="password.invalid">{{getErrorMessage(username)}}</mat-error>
+    <input type="password" matInput [formControl]="password"  required>
+    <mat-error *ngIf="password.invalid">{{getErrorMessage(password)}}</mat-error>
   </mat-form-field>
 
 </div>
@@ -18,3 +18,4 @@
           disabled = {{username.invalid||password.invalid}}
           (click)="onOkClick()" >Войти</button>
 </div>
+

@@ -19,10 +19,12 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/mater
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatOptionModule} from '@angular/material/core';
-import {LoginDialogComponent, UserMenuComponent} from './core/components/user-menu/user-menu.component';
 import {LOAD_CURRENT_USER_INITIALIZER} from './core/services/current-user.service';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SignupComponent } from './core/components/user-menu/modal-dialogs/signup/signup.component';
+import { LoginComponent } from './core/components/user-menu/modal-dialogs/login/login.component';
+import {UserMenuComponent} from './core/components/user-menu/user-menu.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     PopularBookComponent,
     BookSearchComponent,
     UserMenuComponent,
-    LoginDialogComponent
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

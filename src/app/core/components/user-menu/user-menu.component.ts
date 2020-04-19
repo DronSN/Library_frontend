@@ -5,11 +5,9 @@ import {AuthService} from '../../services/auth.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
-
-export interface DialogData {
-  username: string;
-  password: string;
-}
+import {LoginComponent} from './modal-dialogs/login/login.component';
+import {LoginData} from '../../model/auth.model';
+import {SignupComponent} from './modal-dialogs/signup/signup.component';
 
 @Component({
   selector: 'app-user-menu',
@@ -36,7 +34,7 @@ export class UserMenuComponent {
     }
 
   loginClick() {
-    const dialogRef = this.dialog.open(LoginDialogComponent, {
+    const dialogRef = this.dialog.open(LoginComponent, {
       width: '250px'
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -44,7 +42,18 @@ export class UserMenuComponent {
     });
   }
 
-  handleLoginSubmit(value: DialogData) {
+  signupClick() {
+    const dialogRef = this.dialog.open(SignupComponent, {
+      width: '255px',
+      height: '380px'
+    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   this.handleLoginSubmit(result);
+    // });
+  }
+
+
+  handleLoginSubmit(value: LoginData) {
     if (value != null) {
       this.authService.login({
         username: value.username,
@@ -56,10 +65,11 @@ export class UserMenuComponent {
           this.currentUser.user$.next(profile);
         // this.router.navigateByUrl('/');
         },
-        err => {console.log(err);
-                if (err.status === 404) {
+        err => {if (err.status === 404) {
                   this.openSnackBar('Неверное имя пользователя или пароль');
-          }
+          } else if (err.status === 504) {
+                  this.openSnackBar('Сервер недоступен. Повторите попытку позже.');
+                }
         }
         // () => {
         //   this.form.control.setErrors({
@@ -81,34 +91,5 @@ export class UserMenuComponent {
         duration: 7000,
         verticalPosition: 'top'
       });
-  }
-}
-
-@Component({
-  selector: 'app-login-dialog',
-  templateUrl: 'login-dialog.component.html',
-})
-export class LoginDialogComponent {
-  username = new FormControl('', [Validators.required]);
-  password = new FormControl('', [Validators.required]);
-
-  constructor(
-    public dialogRef: MatDialogRef<LoginDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-  onNoClick(): void {
-    this.dialogRef.close(null);
-  }
-  onOkClick(): void {
-    this.dialogRef.close({
-      username: this.username.value,
-      password: this.password.value
-    });
-  }
-  getErrorMessage(formControl: FormControl) {
-    if (formControl.hasError('required')) {
-      return 'Введите значение';
-    }
-    return formControl.invalid ? 'Неверное значение' : '';
   }
 }

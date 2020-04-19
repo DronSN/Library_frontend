@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>Зарегестрироваться</h2>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Логин</mat-label>
+    <input matInput [formControl]="username"  required>
+    <mat-error *ngIf="username.invalid">{{getErrorMessage(username)}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Пароль</mat-label>
+    <input type="password" matInput [formControl]="password"  required>
+    <mat-error *ngIf="password.invalid">{{getErrorMessage(password)}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Повтор пароля</mat-label>
+    <input type="password" matInput [formControl]="passwordDoub" required>
+    <mat-error *ngIf="passwordDoub.invalid">{{getErrorMessage(passwordDoub)}}</mat-error>
+  </mat-form-field>
+  <mat-error class="pass-doub" *ngIf = "password.value !== passwordDoub.value">Пароль и повтор пароля не совпадают</mat-error>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Отмена</button>
+  <button mat-button
+          [disabled] = "isRegButtonDisabled()"
+          (click)="onOkClick()" >Регистрация</button>
+</div>
