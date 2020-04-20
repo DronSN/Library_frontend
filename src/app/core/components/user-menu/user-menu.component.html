@@ -1,20 +1,45 @@
-<div class = "login-button" *ngIf="user$ | async as user">
-  <ng-container *ngIf="user.authenticated; else logInButton">
-    <span class="username">Пользователь: {{user.info.username}}  </span>
-    <a routerLink="profile" mat-button >Профиль пользователя</a>
-    <button mat-stroked-button
-            (click)="handleLogoutClick()">
-      Выйти
-    </button>
-  </ng-container>
+  <mat-toolbar color="primary">
+    <div class="button-table">
+      <div class = "logo-cell">
+        <mat-icon class="library-icon" aria-hidden="false" >local_library</mat-icon>
+      </div>
+      <div class="main-button-cell">
+        <button mat-button [routerLink]="currHome"><h2>БИБЛИОтека</h2></button>
+      </div>
+      <div class = "right-cell">
+        <div class = "login-button" *ngIf="user$ | async as user">
+          <ng-container *ngIf="user.authenticated; else logInButton">
+            <span class="username">Пользователь: {{user.info.username}}  </span>
+            <a routerLink="profile" mat-button >Профиль пользователя</a>
+            <button  mat-stroked-button
+                    (click)="handleLogoutClick()">
+              Выйти
+            </button>
+          </ng-container>
+          <ng-template #logInButton>
+            <button mat-button (click)="signupClick()">Регистрация</button>
+            <a *ngIf="!user.authenticated"
+               mat-flat-button
+               color="accent"
+               (click)="loginClick()">
+              Войти
+            </a>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </mat-toolbar>
+  <div *ngIf="user$ | async as user">
+    <app-admin-user-menu *ngIf="user.info.role === 'ADMIN'"></app-admin-user-menu>
+    <app-regular-user-menu *ngIf="user.info.role === 'USER'"></app-regular-user-menu>
+  </div>
 
-  <ng-template #logInButton>
-    <button mat-button (click)="signupClick()">Регистрация</button>
-    <a *ngIf="!user.authenticated"
-       mat-flat-button
-       color="accent"
-       (click)="loginClick()">
-      Войти
-    </a>
-  </ng-template>
-</div>
+
+
+
+
+
+
+
+
+

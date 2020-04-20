@@ -3,6 +3,9 @@ import {Observable, ReplaySubject} from 'rxjs';
 import {map, shareReplay} from 'rxjs/operators';
 import {CurrentUser, Role} from '../model/current-user.model';
 import {AuthService} from './auth.service';
+import {UserDetails} from '../model/user-details.model';
+import {HttpClient} from '@angular/common/http';
+import {User} from '../model/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +13,8 @@ import {AuthService} from './auth.service';
 export class CurrentUserService {
   readonly user$ = new ReplaySubject<CurrentUser>(1);
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private http: HttpClient) {
   }
 
   initialize(): Promise<void> {
@@ -22,16 +26,24 @@ export class CurrentUserService {
     });
   }
 
-  hasRole(...roles: Role[]): Observable<boolean> {
+  hasRole(role: Role): Observable<boolean> {
     return this.user$.pipe(
       map(user => {
         if (!user.authenticated) {
           return false;
         }
-        const userRoles = user.info.role;
-        return userRoles.find(role => roles.includes(role)) != undefined;
+        const userRole = user.info.role;
+        return userRole === role;
+        // return userRoles.find(role => roles.includes(role)) != undefined;
       })
     );
+  }
+  findUserById(id: number): Observable<User> {
+    return this.http.get<User>(`/api/users/${id}`);
+  }
+  updateUser(user: User): Observable<User> {
+    const id = user.id;
+    return this.http.put<User>(`/api/users/${id}`, user);
   }
 }
 

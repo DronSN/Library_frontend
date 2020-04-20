@@ -1,13 +1,14 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CurrentUserService} from '../../services/current-user.service';
 import {switchMap} from 'rxjs/operators';
 import {AuthService} from '../../services/auth.service';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {LoginComponent} from './modal-dialogs/login/login.component';
 import {LoginData} from '../../model/auth.model';
 import {SignupComponent} from './modal-dialogs/signup/signup.component';
+import {ActivatedRoute, Router} from '@angular/router';
+import {LoggedUser, Role} from '../../model/current-user.model';
 
 @Component({
   selector: 'app-user-menu',
@@ -16,23 +17,27 @@ import {SignupComponent} from './modal-dialogs/signup/signup.component';
 })
 export class UserMenuComponent {
   readonly user$ = this.currentUser.user$;
+  public currHome = '';
 
   constructor(private currentUser: CurrentUserService,
               private authService: AuthService,
               public dialog: MatDialog,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private activeRoute: ActivatedRoute,
+              private router: Router) { }
 
   handleLogoutClick() {
     this.authService.logout()
         .pipe(switchMap(() => this.authService.loadProfile()))
         .subscribe(user => {
          this.currentUser.user$.next(user);
-         // this.router.navigate([''], {
-        //   relativeTo: this.activeRoute
+         this.currHome = '';
+         this.router.navigate([this.currHome], {
+           relativeTo: this.activeRoute
        });
-    this.openSnackBar('Выполнен выход из профиля');
-    }
-
+         this.openSnackBar('Выполнен выход из профиля');
+    });
+  }
   loginClick() {
     const dialogRef = this.dialog.open(LoginComponent, {
       width: '250px'
@@ -63,7 +68,17 @@ export class UserMenuComponent {
       ).subscribe(
         profile => {
           this.currentUser.user$.next(profile);
-        // this.router.navigateByUrl('/');
+          if (profile.authenticated === true) {
+            const loggedUser: LoggedUser = profile as LoggedUser;
+            if (loggedUser.info.role === Role.ADMIN) {
+              this.currHome = '/admin';
+            } else if (loggedUser.info.role === Role.USER) {
+              this.currHome = '/user';
+            } else {
+              this.currHome = '';
+            }
+            this.router.navigateByUrl(this.currHome);
+          }
         },
         err => {if (err.status === 404) {
                   this.openSnackBar('Неверное имя пользователя или пароль');

@@ -25,9 +25,12 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { SignupComponent } from './core/components/user-menu/modal-dialogs/signup/signup.component';
 import { LoginComponent } from './core/components/user-menu/modal-dialogs/login/login.component';
 import {UserMenuComponent} from './core/components/user-menu/user-menu.component';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { UserDashboardComponent } from './pages/user-dashboard/user-dashboard.component';
 import { UserProfileComponent } from './core/components/user-profile/user-profile.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { RegularUserMenuComponent } from './core/components/user-menu/regular-user-menu/regular-user-menu.component';
+import { AdminUserMenuComponent } from './core/components/user-menu/admin-user-menu/admin-user-menu.component';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
     LoginComponent,
     UserDashboardComponent,
     UserProfileComponent,
-    HomePageComponent
+    HomePageComponent,
+    RegularUserMenuComponent,
+    AdminUserMenuComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,

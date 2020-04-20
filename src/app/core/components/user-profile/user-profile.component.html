@@ -1,25 +1,28 @@
-<div class="profile-form">
+<form [formGroup]="form" class="profile-form" (ngSubmit)="handleUpdateSubmit(form.value)">
+
+  <h1>Профиль пользователя</h1>
   <mat-form-field appearance="fill">
     <mat-label>Имя пользователя</mat-label>
-    <input matInput>
+    <input matInput formControlName="username">
   </mat-form-field>
 
   <button mat-raised-button color="primary">Изменить пароль</button>
   <br>
   <mat-form-field appearance="fill">
     <mat-label>Фамилия</mat-label>
-    <input matInput>
+    <input matInput formControlName="lastName">
   </mat-form-field>
   <br>
   <mat-form-field appearance="fill">
     <mat-label>Имя</mat-label>
-    <input matInput>
+    <input matInput formControlName="firstName">
   </mat-form-field>
   <br>
   <mat-form-field appearance="fill">
     <mat-label>Отчество</mat-label>
-    <input matInput>
+    <input matInput formControlName="middleName">
   </mat-form-field>
   <br>
-  <button mat-raised-button color="primary">Сохранить изменения</button>
-</div>
+  <button mat-raised-button color="primary" type="submit">Сохранить изменения</button>
+
+</form>
