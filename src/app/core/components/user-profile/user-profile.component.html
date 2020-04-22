@@ -1,9 +1,9 @@
 <form [formGroup]="form" class="profile-form" (ngSubmit)="handleUpdateSubmit(form.value)">
 
   <h1>Профиль пользователя</h1>
-  <mat-form-field appearance="fill">
+  <mat-form-field appearance="fill" >
     <mat-label>Имя пользователя</mat-label>
-    <input matInput formControlName="username">
+    <input matInput formControlName="username" readonly>
   </mat-form-field>
 
   <button mat-raised-button color="primary">Изменить пароль</button>

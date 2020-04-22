@@ -14,7 +14,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
-import { BookSearchComponent } from './book-search/book-search.component';
+import { BookSearchComponent } from './core/components/book-search/book-search.component';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -31,6 +31,8 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { RegularUserMenuComponent } from './core/components/user-menu/regular-user-menu/regular-user-menu.component';
 import { AdminUserMenuComponent } from './core/components/user-menu/admin-user-menu/admin-user-menu.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
+import { AdminBooksComponent } from './pages/admin-books/admin-books.component';
+import { BooksNotLoginComponent } from './pages/books-not-login/books-not-login.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
     HomePageComponent,
     RegularUserMenuComponent,
     AdminUserMenuComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    AdminBooksComponent,
+    BooksNotLoginComponent
   ],
   imports: [
     BrowserModule,

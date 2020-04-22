@@ -1,16 +1,16 @@
-<div><div>
+
 <div class="search-block">
   <div class = "empty-block"></div>
   <form class="search-book-form">
     <mat-form-field appearance="legacy">
       <mat-label>Найти издание</mat-label>
       <input matInput  type="text" [(ngModel)]="value" [ngModelOptions]="{standalone: true}">
-      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''; findComponentService.search =''">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
   </form>
   <div class="search-button">
-    <button mat-raised-button>Поиск</button>
+    <button routerLink="booksnotloginlist" mat-raised-button (click)="findComponentService.search = value">Поиск</button>
   </div>
 </div>

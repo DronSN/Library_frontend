@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CurrentUser, LoggedUser, Role} from '../../model/current-user.model';
 import {CurrentUserService, loadCurrentUser} from '../../services/current-user.service';
 import {User} from '../../model/user.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 interface UpdateForm {
   firstName: string;
@@ -27,15 +28,16 @@ export class UserProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private fb: FormBuilder,
-              private currentUser: CurrentUserService
-) { this.buildForm(); }
+              private currentUser: CurrentUserService,
+              private snackBar: MatSnackBar
+             ) { this.buildForm(); }
 
   ngOnInit(): void {
     this.currentUser.user$.subscribe(
       profile => {if (profile.authenticated) {
         const user: LoggedUser = profile as LoggedUser;
         this.currentUser.findUserById(user.info.id).subscribe(x => { this.user = x;
-                                                                     this.updateFormFromPerson({
+          this.updateFormFromPerson({
             username: this.user.username,
             firstName: this.user.personalInfo.firstName,
             lastName: this.user.personalInfo.lastName,
@@ -43,7 +45,8 @@ export class UserProfileComponent implements OnInit {
             id: this.user.id,
             role: this.user.role
           });
-        } );
+        },
+    );
       }});
     loadCurrentUser(this.currentUser);
   }
@@ -59,7 +62,8 @@ export class UserProfileComponent implements OnInit {
         lastName: value.lastName,
         middleName: value.middleName
       }
-    }).subscribe();
+    }).subscribe(() => this.openSnackBar('Сохранение выполнено успешно'),
+      () => this.openSnackBar('Ошибка при сохранении изменений!!'));
   }
 
   private buildForm() {
@@ -82,5 +86,12 @@ export class UserProfileComponent implements OnInit {
       role: person.role
     };
     this.form.patchValue(formValue);
+  }
+  openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Ok',
+      {
+        duration: 7000,
+        verticalPosition: 'top'
+      });
   }
 }
