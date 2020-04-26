@@ -14,6 +14,7 @@ export class BooksNotLoginComponent implements OnInit {
 
   navigationSubscription: Subscription;
   books: Book[];
+  columns = ['author', 'name'];
   constructor(
     public findComponentService: FindComponentService,
     public findBooksService: FindBooksService,
